@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "RN_LOGIN_SIGNUP",
+    "slug": "RN_LOGIN_SIGNUP",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "RN_LOGIN_SIGNUP"
+}
