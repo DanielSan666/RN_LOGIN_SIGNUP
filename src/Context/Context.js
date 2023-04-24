@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { IP_SERVER } from "../Constants";
 
 export const AuthContext = createContext();
 
@@ -16,12 +17,11 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
   //Funcion para realizar la peticion a la base de datos y autenticar al usuario
   // const IP = "192.168.1.10";
-  const vercel = "192.168.1.14";
 
   const login = async (inputs) => {
     console.log(inputs);
     try {
-      const response = await fetch(`http://${vercel}:5000/api/users/login`, {
+      const response = await fetch(`${IP_SERVER}/api/users/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",

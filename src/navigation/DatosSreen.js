@@ -11,6 +11,7 @@ import {
 import { useQuery } from "react-query";
 import { AuthContext } from "../Context/Context";
 import { Picker } from "@react-native-picker/picker";
+import { IP_SERVER } from "../Constants";
 
 const DatosSreen = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const DatosSreen = () => {
   const { isLoading, isError, data } = useQuery({
     queryKey: "casas",
     queryFn: () =>
-      axios.get("http://192.168.1.14:5000/api/casas", {
+      axios.get(`${IP_SERVER}/api/casas`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -98,7 +99,7 @@ const DatosSreen = () => {
                     return null;
                   }
                   return (
-                    <Text style={styles.item}>
+                    <Text style={styles.item} key={key}>
                       {key}: {casaSeleccionada.casa[key]}
                     </Text>
                   );
@@ -115,7 +116,7 @@ const DatosSreen = () => {
                           {habitacion.Nombre}
                         </Text>
                         {habitacion.Medidas.map((medida) => (
-                          <Text style={styles.item}>
+                          <Text style={styles.item} key={medida._id}>
                             {medida.tipo} : {medida.valor}
                           </Text>
                         ))}
