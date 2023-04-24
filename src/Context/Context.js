@@ -6,22 +6,20 @@ const AuthContextProvider = ({ children }) => {
   //Estado inicial del usuario
   const initialState = {
     Nombre: "",
-    Apellido:"",
+    Apellido: "",
     id: "",
-    Email:"",
-    Telefono:"",
-    token:"",
+    Email: "",
+    Telefono: "",
+    token: "",
     auth: false,
   };
   const [user, setUser] = useState(initialState);
   //Funcion para realizar la peticion a la base de datos y autenticar al usuario
   // const IP = "192.168.1.10";
-  const vercel = "192.168.1.22"
-
+  const vercel = "192.168.1.14";
 
   const login = async (inputs) => {
-    
-  console.log(inputs)
+    console.log(inputs);
     try {
       const response = await fetch(`http://${vercel}:5000/api/users/login`, {
         method: "POST",
@@ -36,15 +34,15 @@ const AuthContextProvider = ({ children }) => {
         const AuthUser = await response.json();
         setUser(AuthUser);
         // await AsyncStorage.setItem("token", JSON.stringify(AuthUser.token));
-        return true
+        return true;
       } else {
         setUser(initialState);
-        return false
+        return false;
       }
     } catch (error) {
       // console.log(error);
       setUser(initialState);
-      return false
+      return false;
     }
   };
   //Funcion para cerrar sesion y regresar al usuario a la pantalla de login
