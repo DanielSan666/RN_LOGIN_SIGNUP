@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { getData } from "../API/api";
 import Btn1 from "../Btn1";
-import { darkGreen } from "../Constants";
+import { IP_SERVER, darkGreen } from "../Constants";
 import { useMutation, useQuery } from "react-query";
 import axios from "axios";
 import { Picker } from "@react-native-picker/picker";
@@ -63,7 +63,7 @@ const RegistroCasaForm = ({ updateForm }) => {
   const { user } = useContext(AuthContext);
   const createCasa = useMutation({
     mutationFn: ({ postData }) => {
-      return axios.post(`http://192.168.1.14:5000/api/casas/`, postData, {
+      return axios.post(`${IP_SERVER}/api/casas/`, postData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -173,7 +173,7 @@ const RegistroHabitacionForm = ({ updateForm }) => {
   const { isError, isLoading, data } = useQuery(
     "medidas",
     () =>
-      axios.get(`http://192.168.1.14:5000/api/casas`, {
+      axios.get(`${IP_SERVER}/api/casas`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -185,7 +185,7 @@ const RegistroHabitacionForm = ({ updateForm }) => {
   const createHabitacion = useMutation({
     mutationFn: ({ postData, casaId }) => {
       return axios.post(
-        `http://192.168.1.14:5000/api/casas/${casaId}/habitacion`,
+        `${IP_SERVER}/api/casas/${casaId}/habitacion`,
         postData,
         {
           headers: {
